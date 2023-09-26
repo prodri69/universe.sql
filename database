@@ -1,0 +1,4 @@
+psql --username=freecodecamp --dbname=postgres
+\c universe
+CREATE TABLE galaxy( id SERIAL PRIMARY KEY, name VARCHAR(30), life_expectancy_in_years INT, rating NUMERIC, clasification_id INT, biggest_in_the_universe TEXT, inhabitable BOOLEAN); 
+ SELECT * FROM galaxy;
