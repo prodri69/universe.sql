@@ -1,4 +1,75 @@
 psql --username=freecodecamp --dbname=postgres
 \c universe
-CREATE TABLE galaxy( id SERIAL PRIMARY KEY, name VARCHAR(30), life_expectancy_in_years INT, rating NUMERIC, clasification_id INT, biggest_in_the_universe TEXT, inhabitable BOOLEAN); 
- SELECT * FROM galaxy;
+CREATE TABLE Galaxy (
+    Galaxy_id SERIAL PRIMARY KEY,
+    Name VARCHAR(30),
+    Type TEXT,
+    Size NUMERIC,
+    Age_in_years NUMERIC
+);
+
+CREATE TABLE Star (
+    Star_id SERIAL PRIMARY KEY,
+    Name VARCHAR(30),
+    Spectral_type TEXT,
+    Mass NUMERIC,
+    Radius_in_km NUMERIC,
+    Temperature_in_C NUMERIC,
+    Galaxy_id INT REFERENCES Galaxy(Galaxy_id),
+    Has_water BOOLEAN
+);
+
+CREATE TABLE Star_2 (
+    Star_id SERIAL PRIMARY KEY,
+    Name VARCHAR(30),
+    Spectral_type TEXT,
+    Mass NUMERIC,
+    Radius_in_km NUMERIC,
+    Temperature_in_C NUMERIC,
+    Galaxy_id INT REFERENCES Galaxy(Galaxy_id),
+    Has_water BOOLEAN
+);
+
+CREATE TABLE Planet_A (
+    Planet_id SERIAL PRIMARY KEY,
+    Name VARCHAR(30),
+    Type TEXT,
+    Mass_in_kg NUMERIC,
+    Radius_in_km NUMERIC,
+    Distance_from_star_in_km NUMERIC,
+    Star_id INT REFERENCES Star(Star_id),
+    Has_water BOOLEAN
+);
+
+CREATE TABLE Planet_B (
+    Planet_id SERIAL PRIMARY KEY,
+    Name VARCHAR(30),
+    Type TEXT,
+    Mass_in_kg NUMERIC,
+    Radius_in_km NUMERIC,
+    Distance_from_star_in_km NUMERIC,
+    Star_id INT REFERENCES Star(Star_id),
+    Has_water BOOLEAN
+);
+
+CREATE TABLE Moon_X (
+    Moon_id SERIAL PRIMARY KEY,
+    Name VARCHAR(30),
+    Type TEXT,
+    Mass_in_kg NUMERIC,
+    Radius_in_km NUMERIC,
+    Distance_from_planet_in_km NUMERIC,
+    Planet_id INT REFERENCES Planet_A(Planet_id),
+    Has_water BOOLEAN
+);
+
+CREATE TABLE Moon_Y (
+    Moon_id SERIAL PRIMARY KEY,
+    Name VARCHAR(30),
+    Type TEXT,
+    Mass_in_kg NUMERIC,
+    Radius_in_km NUMERIC,
+    Distance_from_planet_in_km NUMERIC,
+    Planet_id INT REFERENCES Planet_B(Planet_id),
+    Has_water BOOLEAN
+);
