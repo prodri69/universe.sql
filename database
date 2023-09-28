@@ -7,45 +7,44 @@ CREATE TABLE galaxy (
     Type TEXT,
     Size NUMERIC,
     Age_in_years NUMERIC,
-    population INT UNIQUE
+    Number_of_arms INT
 );
 
 INSERT INTO galaxy VALUES
-(1, 'Milky Way', 'Barred spiral galaxy', 100.000, 13.600.000.000, 7.800.000.000),
-(2, 'Andromeda', 'Spiral galaxy', 220.000, 10.000.000.000, 0),
-(3, 'Triangulum', 'Spiral galaxy', 50.000, 8.000.000.000, 0),
-(4, 'Sombrero', 'Spiral galaxy', 50.000, 9.000.000.000, 0),
-(5, 'Whirlpool', 'Spiral galaxy', 60.000, 200.000.000, 0),
-(6, 'Pinwheel Galaxy', 'Spiral galaxy', 170.000, 1.000.000.000, 0);
+ (1, 'Milky Way', 'Barred spiral galaxy', 100000, 13600000, 4),
+    (2, 'Andromeda', 'Spiral galaxy', 220000, 10000000, 2),
+    (3, 'Triangulum', 'Spiral galaxy', 50000, 8000000, 3),
+    (4, 'Sombrero', 'Spiral galaxy', 50000, 9000000, 1),
+    (5, 'Whirlpool', 'Spiral galaxy', 60000, 200000, 2),
+    (6, 'Pinwheel Galaxy', 'Spiral galaxy', 170000, 100000, 4);
 
 
 CREATE TABLE star (
     star_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30) NOT NULL,
+    Name VARCHAR(30) UNIQUE NOT NULL,
     Spectral_type TEXT,
-    Mass NUMERIC,
-    Radius_in_km NUMERIC,
+    Mass_in_billions_of_petagrams INT,
+    Radius_in_gigameters NUMERIC,
     Galaxy_id INT REFERENCES Galaxy(Galaxy_id) NOT NULL,
-    population INT UNIQUE,
-    Has_water BOOLEAN
+    pulsar BOOLEAN
 );
 
 INSERT INTO star VALUES
-(1, 'Sun', 'G2V', 198.900.000.000.000.000.000.000.000, 696.340, 1, 0, false)
-(2, 'Alpha Centauri A', 'G2V', 218.790.000.000.000.000.000.000.000, 700.000, 700.000, 1, 0, false),
-(3, 'Betelgeuse', 'M1-2la', 1.989.000.000.000.000.000.000.000.000, 700.000.000, 1, 0, false),
-(4, 'Proxima Centauri, 'M5.5V', 238.680.000.000.000.000.000.000.000.000, 97.286, 1, 0, false),
-(5, 'M31 RV', 'Unknown', 0, 0, 2, 0, false),
-(6, 'M51', 'Unknown', 0, 0, 5, 0, false);
+(1, 'Sun', 'G2V', 1989, 696, 1, false),
+(2, 'Alpha Centauri A', 'G2V', 2, 2, 1,  false),
+(3, 'Betelgeuse', 'M1-2la', 1989, 1080, 1, false),
+(4, 'Proxima Centauri', 'M5.5V', 1, 1, 1, false),
+(5, 'M31 RV', 'Unknown', 2983, NULL, 2, false),
+(6, 'M51', 'Unknown', NULL, NULL, 5, false);
 
 
 CREATE TABLE planet (
     planet_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30) NOT NULL,
+    Name VARCHAR(30) UNIQUE NOT NULL,
     Type TEXT,
-    Mass_in_kg NUMERIC,
+    Mass_in_billions_of_petagrams INT,
     Star_id INT REFERENCES Star(Star_id) NOT NULL,
-    population INT UNIQUE,
+    population INT,
     Has_water BOOLEAN
 );
 
@@ -62,11 +61,6 @@ INSERT INTO planet VALUES
 (10, 'Andromeda RV II', 'Exoplanet', 8.21e+24, 5, NULL, FALSE),
 (11, 'M51 I', 'Gas Giant', 9.34e+26, 6, NULL, FALSE),
 (12, 'M51 II', 'Rocky Planet', 6.75e+23, 6, NULL, TRUE);
-
-
-
-
-
 
 CREATE TABLE moon (
     moon_id SERIAL PRIMARY KEY,
@@ -90,6 +84,27 @@ CREATE TABLE moon_2 (
     Has_water BOOLEAN
 );
 
-INSERT INTO galaxy(
+INSERT INTO moon VALUES
+(1, 'Mercury Moon 1', 'Rocky Moon', 2000, 1, NULL, 1, FALSE, 'Mercury'),
+(2, 'Mercury Moon 2', 'Rocky Moon', 1500, 1, NULL, 1, FALSE, 'Mercury'),
+(3, 'Venus Moon 1', 'Rocky Moon', 1800, 2, NULL, 2, FALSE, 'Venus'),
+(4, 'Alpha Centauri B Moon 1', 'Exomoon', 3000, 8, NULL, 3, FALSE, 'Alpha Centauri B'),
+(5, 'Alpha Centauri B Moon 2', 'Exomoon', 2800, 8, NULL, 3, FALSE, 'Alpha Centauri B'),
+(6, 'Alpha Centauri C Moon 1', 'Exomoon', 2600, 9, NULL, 4, FALSE, 'Alpha Centauri C'),
+(7, 'Betelgeuse I Moon 1', 'Rocky Moon', 2400, 15, NULL, 5, FALSE, 'Betelgeuse I'),
+(8, 'Betelgeuse II Moon 1', 'Rocky Moon', 2200, 16, NULL, 6, FALSE, 'Betelgeuse II'),
+(9, 'Proxima Centauri B Moon 1', 'Exomoon', 2700, 10, NULL, 7, FALSE, 'Proxima Centauri B'),
+(10, 'Proxima Centauri C Moon 1', 'Exomoon', 2600, 11, NULL, 8, FALSE, 'Proxima Centauri C'),
+(11, 'Andromeda RV I Moon 1', 'Exomoon', 3200, 13, NULL, 9, FALSE, 'Andromeda RV I'),
+(12, 'Andromeda RV II Moon 1', 'Exomoon', 3100, 14, NULL, 10, FALSE, 'Andromeda RV II'),
+(13, 'M51 I Moon 1', 'Gas Giant Moon', 4500, 17, NULL, 11, FALSE, 'M51 I'),
+(14, 'M51 II Moon 1', 'Rocky Moon', 2800, 18, NULL, 12, FALSE, 'M51 II'),
+(15, 'M51 II Moon 2', 'Rocky Moon', 2600, 18, NULL, 12, FALSE, 'M51 II'),
+(16, 'Venus Moon 2', 'Rocky Moon', 1700, 2, NULL, 2, FALSE, 'Venus'),
+(17, 'Alpha Centauri B Moon 3', 'Exomoon', 3200, 8, NULL, 3, FALSE, 'Alpha Centauri B'),
+(18, 'Alpha Centauri C Moon 2', 'Exomoon', 3100, 9, NULL, 4, FALSE, 'Alpha Centauri C'),
+(19, 'Proxima Centauri B Moon 2', 'Exomoon', 2800, 10, NULL, 7, FALSE, 'Proxima Centauri B'),
+(20, 'Proxima Centauri C Moon 2', 'Exomoon', 2700, 11, NULL, 8, FALSE, 'Proxima Centauri C');
+
 
 
