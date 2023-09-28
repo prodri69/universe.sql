@@ -31,7 +31,12 @@ CREATE TABLE star (
 );
 
 INSERT INTO star VALUES
-(1, 'Sun', 'G2V', 198.900.000.000.000.000.000.000.000, 
+(1, 'Sun', 'G2V', 198.900.000.000.000.000.000.000.000, 696.340, 1, 0, false)
+(2, 'Alpha Centauri A', 'G2V', 218.790.000.000.000.000.000.000.000, 700.000, 700.000, 1, 0, false),
+(3, 'Betelgeuse', 'M1-2la', 1.989.000.000.000.000.000.000.000.000, 700.000.000, 1, 0, false),
+(4, 'Proxima Centauri, 'M5.5V', 238.680.000.000.000.000.000.000.000.000, 97.286, 1, 0, false),
+(5, 'M31 RV', 'Unknown', 0, 0, 2, 0, false),
+(6, 'M51', 'Unknown', 0, 0, 5, 0, false);
 
 
 CREATE TABLE planet (
@@ -43,6 +48,23 @@ CREATE TABLE planet (
     population INT UNIQUE,
     Has_water BOOLEAN
 );
+
+INSERT INTO planet VALUES
+(1, 'Mercury', 'Terrestrial', 3.3011e+23, 1, NULL, FALSE),
+(2, 'Venus', 'Terrestrial', 4.8675e+24, 1, NULL, FALSE),
+(3, 'Alpha Centauri b', 'Exoplanet', 1.9e+24, 2, NULL, FALSE),
+(4, 'Alpha Centauri c', 'Exoplanet', 2.4e+24, 2, NULL, TRUE),
+(5, 'Betelgeuse I', 'Gas Giant', 1.8e+27, 3, NULL, FALSE),
+(6, 'Betelgeuse II', 'Rocky Planet', 1.2e+24, 3, NULL, FALSE),
+(7, 'Proxima Centauri b', 'Exoplanet', 1.27e+25, 4, NULL, TRUE),
+(8, 'Proxima Centauri c', 'Exoplanet', 2.96e+25, 4, NULL, FALSE),
+(9, 'Andromeda RV I', 'Exoplanet', 3.45e+24, 5, NULL, TRUE),
+(10, 'Andromeda RV II', 'Exoplanet', 8.21e+24, 5, NULL, FALSE),
+(11, 'M51 I', 'Gas Giant', 9.34e+26, 6, NULL, FALSE),
+(12, 'M51 II', 'Rocky Planet', 6.75e+23, 6, NULL, TRUE);
+
+
+
 
 
 
