@@ -1,75 +1,123 @@
 psql --username=freecodecamp --dbname=postgres
 \c universe
+
 CREATE TABLE Galaxy (
     Galaxy_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30),
+    Name VARCHAR(30) UNIQUE NOT NULL,
     Type TEXT,
     Size NUMERIC,
-    Age_in_years NUMERIC
+    Age_in_years NUMERIC,
+    population INT UNIQUE
 );
 
-CREATE TABLE Star (
+CREATE TABLE star (
     Star_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30),
+    Name VARCHAR(30) NOT NULL,
     Spectral_type TEXT,
     Mass NUMERIC,
     Radius_in_km NUMERIC,
     Temperature_in_C NUMERIC,
-    Galaxy_id INT REFERENCES Galaxy(Galaxy_id),
+    Galaxy_id INT REFERENCES Galaxy(Galaxy_id) NOT NULL,
+    population INT UNIQUE,
     Has_water BOOLEAN
 );
 
 CREATE TABLE Star_2 (
-    Star_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30),
+    Star_2_id SERIAL PRIMARY KEY,
+    Name VARCHAR(30) NOT NULL,
     Spectral_type TEXT,
     Mass NUMERIC,
     Radius_in_km NUMERIC,
     Temperature_in_C NUMERIC,
-    Galaxy_id INT REFERENCES Galaxy(Galaxy_id),
+    Galaxy_id INT REFERENCES Galaxy(Galaxy_id) NOT NULL,
+    population INT UNIQUE,
     Has_water BOOLEAN
 );
 
-CREATE TABLE Planet_A (
+CREATE TABLE Planet (
     Planet_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30),
+    Name VARCHAR(30) NOT NULL,
     Type TEXT,
     Mass_in_kg NUMERIC,
     Radius_in_km NUMERIC,
     Distance_from_star_in_km NUMERIC,
-    Star_id INT REFERENCES Star(Star_id),
-    Has_water BOOLEAN
+    Star_id INT REFERENCES Star(Star_id) NOT NULL,
+    population INT UNIQUE,
+    Has_water BOOLEAN,
+    Surface_temperature_in_C NUMERIC,
+    Atmosphere_composition TEXT,
+    Geological_activity BOOLEAN,
+    Magnetic_field BOOLEAN
 );
+
 
 CREATE TABLE Planet_B (
     Planet_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30),
+    Name VARCHAR(30) NOT NULL,
     Type TEXT,
     Mass_in_kg NUMERIC,
     Radius_in_km NUMERIC,
     Distance_from_star_in_km NUMERIC,
-    Star_id INT REFERENCES Star(Star_id),
-    Has_water BOOLEAN
+    Star_id INT REFERENCES Star(Star_id) NOT NULL,
+    population INT UNIQUE,
+    Has_water BOOLEAN,
+    Surface_temperature_in_C NUMERIC,
+    Atmosphere_composition TEXT,
+    Geological_activity BOOLEAN,
+    Magnetic_field BOOLEAN
 );
 
-CREATE TABLE Moon_X (
+
+CREATE TABLE Moon (
     Moon_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30),
+    Name VARCHAR(30) NOT NULL,
     Type TEXT,
     Mass_in_kg NUMERIC,
     Radius_in_km NUMERIC,
     Distance_from_planet_in_km NUMERIC,
-    Planet_id INT REFERENCES Planet_A(Planet_id),
-    Has_water BOOLEAN
+    Planet_id INT REFERENCES Planet(Planet_id) NOT NULL,
+    population INT UNIQUE,
+    Has_water BOOLEAN,
+    Surface_temperature_in_C NUMERIC,
+    Crater_count INT,
+    Orbital_period_days NUMERIC,
+    Magnetic_field BOOLEAN,
+    Atmosphere_composition TEXT,
+    Geological_activity BOOLEAN,
+    Surface_features TEXT,
+    Elevation_range_meters NUMERIC,
+    Gravity_m_s2 NUMERIC,
+    Axial_tilt_degrees NUMERIC,
+    Orbital_eccentricity NUMERIC,
+    Ice_coverage_percentage NUMERIC
 );
 
-CREATE TABLE Moon_Y (
+
+
+CREATE TABLE Moon_2 (
     Moon_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30),
+    Name VARCHAR(30) NOT NULL,
     Type TEXT,
     Mass_in_kg NUMERIC,
     Radius_in_km NUMERIC,
     Distance_from_planet_in_km NUMERIC,
-    Planet_id INT REFERENCES Planet_B(Planet_id),
-    Has_water BOOLEAN
+    Planet_id INT REFERENCES Planet(Planet_id) NOT NULL,
+    population INT UNIQUE,
+    Has_water BOOLEAN,
+    Surface_temperature_in_C NUMERIC,
+    Crater_count INT,
+    Orbital_period_days NUMERIC,
+    Magnetic_field BOOLEAN,
+    Atmosphere_composition TEXT,
+    Geological_activity BOOLEAN,
+    Surface_features TEXT,
+    Elevation_range_meters NUMERIC,
+    Gravity_m_s2 NUMERIC,
+    Axial_tilt_degrees NUMERIC,
+    Orbital_eccentricity NUMERIC,
+    Ice_coverage_percentage NUMERIC
 );
+
+
+
+
