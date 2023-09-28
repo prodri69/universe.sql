@@ -10,6 +10,15 @@ CREATE TABLE galaxy (
     population INT UNIQUE
 );
 
+INSERT INTO galaxy VALUES
+(1, 'Milky Way', 'Barred spiral galaxy', 100.000, 13.600.000.000, 7.800.000.000),
+(2, 'Andromeda', 'Spiral galaxy', 220.000, 10.000.000.000, 0),
+(3, 'Triangulum', 'Spiral galaxy', 50.000, 8.000.000.000, 0),
+(4, 'Sombrero', 'Spiral galaxy', 50.000, 9.000.000.000, 0),
+(5, 'Whirlpool', 'Spiral galaxy', 60.000, 200.000.000, 0),
+(6, 'Pinwheel Galaxy', 'Spiral galaxy', 170.000, 1.000.000.000, 0);
+
+
 CREATE TABLE star (
     star_id SERIAL PRIMARY KEY,
     Name VARCHAR(30) NOT NULL,
@@ -21,17 +30,9 @@ CREATE TABLE star (
     Has_water BOOLEAN
 );
 
-CREATE TABLE Star (
-    Star_2_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30) NOT NULL,
-    Spectral_type TEXT,
-    Mass NUMERIC,
-    Radius_in_km NUMERIC,
-    Temperature_in_C NUMERIC,
-    Galaxy_id INT REFERENCES Galaxy(Galaxy_id) NOT NULL,
-    population INT UNIQUE,
-    Has_water BOOLEAN
-);
+INSERT INTO star VALUES
+(1, 'Sun', 'G2V', 198.900.000.000.000.000.000.000.000, 
+
 
 CREATE TABLE planet (
     planet_id SERIAL PRIMARY KEY,
@@ -43,22 +44,6 @@ CREATE TABLE planet (
     Has_water BOOLEAN
 );
 
-
-CREATE TABLE Planet_B (
-    Planet_id SERIAL PRIMARY KEY,
-    Name VARCHAR(30) NOT NULL,
-    Type TEXT,
-    Mass_in_kg NUMERIC,
-    Radius_in_km NUMERIC,
-    Distance_from_star_in_km NUMERIC,
-    Star_id INT REFERENCES Star(Star_id) NOT NULL,
-    population INT UNIQUE,
-    Has_water BOOLEAN,
-    Surface_temperature_in_C NUMERIC,
-    Atmosphere_composition TEXT,
-    Geological_activity BOOLEAN,
-    Magnetic_field BOOLEAN
-);
 
 
 CREATE TABLE moon (
