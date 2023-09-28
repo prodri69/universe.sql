@@ -1,8 +1,8 @@
 psql --username=freecodecamp --dbname=postgres
 \c universe
 
-CREATE TABLE Galaxy (
-    Galaxy_id SERIAL PRIMARY KEY,
+CREATE TABLE galaxy (
+    galaxy_id SERIAL PRIMARY KEY,
     Name VARCHAR(30) UNIQUE NOT NULL,
     Type TEXT,
     Size NUMERIC,
@@ -11,18 +11,17 @@ CREATE TABLE Galaxy (
 );
 
 CREATE TABLE star (
-    Star_id SERIAL PRIMARY KEY,
+    star_id SERIAL PRIMARY KEY,
     Name VARCHAR(30) NOT NULL,
     Spectral_type TEXT,
     Mass NUMERIC,
     Radius_in_km NUMERIC,
-    Temperature_in_C NUMERIC,
     Galaxy_id INT REFERENCES Galaxy(Galaxy_id) NOT NULL,
     population INT UNIQUE,
     Has_water BOOLEAN
 );
 
-CREATE TABLE Star_2 (
+CREATE TABLE Star (
     Star_2_id SERIAL PRIMARY KEY,
     Name VARCHAR(30) NOT NULL,
     Spectral_type TEXT,
@@ -34,20 +33,14 @@ CREATE TABLE Star_2 (
     Has_water BOOLEAN
 );
 
-CREATE TABLE Planet (
-    Planet_id SERIAL PRIMARY KEY,
+CREATE TABLE planet (
+    planet_id SERIAL PRIMARY KEY,
     Name VARCHAR(30) NOT NULL,
     Type TEXT,
     Mass_in_kg NUMERIC,
-    Radius_in_km NUMERIC,
-    Distance_from_star_in_km NUMERIC,
     Star_id INT REFERENCES Star(Star_id) NOT NULL,
     population INT UNIQUE,
-    Has_water BOOLEAN,
-    Surface_temperature_in_C NUMERIC,
-    Atmosphere_composition TEXT,
-    Geological_activity BOOLEAN,
-    Magnetic_field BOOLEAN
+    Has_water BOOLEAN
 );
 
 
@@ -68,56 +61,28 @@ CREATE TABLE Planet_B (
 );
 
 
-CREATE TABLE Moon (
-    Moon_id SERIAL PRIMARY KEY,
+CREATE TABLE moon (
+    moon_id SERIAL PRIMARY KEY,
     Name VARCHAR(30) NOT NULL,
     Type TEXT,
-    Mass_in_kg NUMERIC,
     Radius_in_km NUMERIC,
-    Distance_from_planet_in_km NUMERIC,
     Planet_id INT REFERENCES Planet(Planet_id) NOT NULL,
     population INT UNIQUE,
-    Has_water BOOLEAN,
-    Surface_temperature_in_C NUMERIC,
-    Crater_count INT,
-    Orbital_period_days NUMERIC,
-    Magnetic_field BOOLEAN,
-    Atmosphere_composition TEXT,
-    Geological_activity BOOLEAN,
-    Surface_features TEXT,
-    Elevation_range_meters NUMERIC,
-    Gravity_m_s2 NUMERIC,
-    Axial_tilt_degrees NUMERIC,
-    Orbital_eccentricity NUMERIC,
-    Ice_coverage_percentage NUMERIC
+    Has_water BOOLEAN
 );
 
 
 
-CREATE TABLE Moon_2 (
-    Moon_id SERIAL PRIMARY KEY,
+CREATE TABLE moon_2 (
+    moon_2_id SERIAL PRIMARY KEY,
     Name VARCHAR(30) NOT NULL,
     Type TEXT,
-    Mass_in_kg NUMERIC,
     Radius_in_km NUMERIC,
-    Distance_from_planet_in_km NUMERIC,
     Planet_id INT REFERENCES Planet(Planet_id) NOT NULL,
     population INT UNIQUE,
-    Has_water BOOLEAN,
-    Surface_temperature_in_C NUMERIC,
-    Crater_count INT,
-    Orbital_period_days NUMERIC,
-    Magnetic_field BOOLEAN,
-    Atmosphere_composition TEXT,
-    Geological_activity BOOLEAN,
-    Surface_features TEXT,
-    Elevation_range_meters NUMERIC,
-    Gravity_m_s2 NUMERIC,
-    Axial_tilt_degrees NUMERIC,
-    Orbital_eccentricity NUMERIC,
-    Ice_coverage_percentage NUMERIC
+    Has_water BOOLEAN
 );
 
-
+INSERT INTO galaxy(
 
 
